@@ -1,0 +1,418 @@
+{
+  "config": {
+    "url": "https://digitable.ink/app/games",
+    "timeout": 30000,
+    "page_limit": 10,
+    "output_dir": "/tmp/image-downloads/job-0e490a9ef41a3a0f",
+    "wait_for_ajax": 3000,
+    "chrome_path": "/usr/bin/google-chrome-stable",
+    "headless": true,
+    "crawl_subdomains": false,
+    "prompt_login": false,
+    "handle_challenge": false
+  },
+  "timestamp": "2026-11-06T17:20:15.075Z",
+  "pages": 1,
+  "discovered": 1,
+  "content": {
+    "media": {
+      "images": 0,
+      "videos": 0,
+      "pdf": 0,
+      "favicons": 1
+    },
+    "scripts": {
+      "js": 67,
+      "css": 3,
+      "manifest": 0
+    },
+    "assets": {
+      "images": 9,
+      "fonts": 0,
+      "other": 8
+    }
+  },
+  "details": {
+    "pages": [],
+    "root_url": "https://digitable.ink/app/games",
+    "hostname": "digitable.ink",
+    "site_path": "/tmp/image-downloads/job-0e490a9ef41a3a0f/digitable.ink",
+    "content": {
+      "media": {
+        "images": [],
+        "videos": [],
+        "pdf": [],
+        "favicons": [
+          {
+            "original": "https://digitable.ink/app/favicon.png",
+            "local": "app/favicon.png"
+          }
+        ],
+        "audio": []
+      },
+      "scripts": {
+        "js": [
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/itk-RkJJ.js",
+            "local": "app/_app/immutable/chunks/itk-RkJJ.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/entry/start.tC41UdXd.js",
+            "local": "app/_app/immutable/entry/start.tC41UdXd.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/L6ca1ozp.js",
+            "local": "app/_app/immutable/chunks/L6ca1ozp.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/B7uj9ok2.js",
+            "local": "app/_app/immutable/chunks/B7uj9ok2.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/entry/app.CPfx04Si.js",
+            "local": "app/_app/immutable/entry/app.CPfx04Si.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/-UyI9lYi.js",
+            "local": "app/_app/immutable/chunks/-UyI9lYi.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CwwnjdUC.js",
+            "local": "app/_app/immutable/chunks/CwwnjdUC.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CyagUWY4.js",
+            "local": "app/_app/immutable/chunks/CyagUWY4.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/Cn9_cUa5.js",
+            "local": "app/_app/immutable/chunks/Cn9_cUa5.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BX2GU7Uw.js",
+            "local": "app/_app/immutable/chunks/BX2GU7Uw.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/PPVm8Dsz.js",
+            "local": "app/_app/immutable/chunks/PPVm8Dsz.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/C8F4alPg.js",
+            "local": "app/_app/immutable/chunks/C8F4alPg.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/D4AYuhQA.js",
+            "local": "app/_app/immutable/chunks/D4AYuhQA.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/Bydqxrjp.js",
+            "local": "app/_app/immutable/chunks/Bydqxrjp.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DjDK4Gcb.js",
+            "local": "app/_app/immutable/chunks/DjDK4Gcb.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/D4gs151I.js",
+            "local": "app/_app/immutable/chunks/D4gs151I.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CjVParL-.js",
+            "local": "app/_app/immutable/chunks/CjVParL-.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/tI7sOn3r.js",
+            "local": "app/_app/immutable/chunks/tI7sOn3r.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CwnzqZw-.js",
+            "local": "app/_app/immutable/chunks/CwnzqZw-.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BCaXwhFt.js",
+            "local": "app/_app/immutable/chunks/BCaXwhFt.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/B2pWqfIs.js",
+            "local": "app/_app/immutable/chunks/B2pWqfIs.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CWbFBE18.js",
+            "local": "app/_app/immutable/chunks/CWbFBE18.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BtzdVYvr.js",
+            "local": "app/_app/immutable/chunks/BtzdVYvr.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/nodes/0.BD9g5W35.js",
+            "local": "app/_app/immutable/nodes/0.BD9g5W35.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CmZ9tv-Y.js",
+            "local": "app/_app/immutable/chunks/CmZ9tv-Y.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/QyqJA07V.js",
+            "local": "app/_app/immutable/chunks/QyqJA07V.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CqfRhK0F.js",
+            "local": "app/_app/immutable/chunks/CqfRhK0F.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/D-Xf8mUC.js",
+            "local": "app/_app/immutable/chunks/D-Xf8mUC.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/oKXMgCh-.js",
+            "local": "app/_app/immutable/chunks/oKXMgCh-.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/yEqTJpWh.js",
+            "local": "app/_app/immutable/chunks/yEqTJpWh.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DcEoRSaX.js",
+            "local": "app/_app/immutable/chunks/DcEoRSaX.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/By6pRzbt.js",
+            "local": "app/_app/immutable/chunks/By6pRzbt.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/ciyfsgrx.js",
+            "local": "app/_app/immutable/chunks/ciyfsgrx.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/Chbdu_6J.js",
+            "local": "app/_app/immutable/chunks/Chbdu_6J.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DPwF7NN3.js",
+            "local": "app/_app/immutable/chunks/DPwF7NN3.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BMCXoU05.js",
+            "local": "app/_app/immutable/chunks/BMCXoU05.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DN_tnip3.js",
+            "local": "app/_app/immutable/chunks/DN_tnip3.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/D3A7GI5r.js",
+            "local": "app/_app/immutable/chunks/D3A7GI5r.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/nodes/2.DEL3qUj8.js",
+            "local": "app/_app/immutable/nodes/2.DEL3qUj8.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BfVGmfdE.js",
+            "local": "app/_app/immutable/chunks/BfVGmfdE.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DHN6jCV6.js",
+            "local": "app/_app/immutable/chunks/DHN6jCV6.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DVafIw4B.js",
+            "local": "app/_app/immutable/chunks/DVafIw4B.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DfbFO9s0.js",
+            "local": "app/_app/immutable/chunks/DfbFO9s0.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DsqdWQfm.js",
+            "local": "app/_app/immutable/chunks/DsqdWQfm.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BjefmIgR.js",
+            "local": "app/_app/immutable/chunks/BjefmIgR.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/F5uJFP5O.js",
+            "local": "app/_app/immutable/chunks/F5uJFP5O.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/Rzw-TCWq.js",
+            "local": "app/_app/immutable/chunks/Rzw-TCWq.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BEO92gGM.js",
+            "local": "app/_app/immutable/chunks/BEO92gGM.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/RvepaAyG.js",
+            "local": "app/_app/immutable/chunks/RvepaAyG.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/D2G1ucvE.js",
+            "local": "app/_app/immutable/chunks/D2G1ucvE.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DVNufAZd.js",
+            "local": "app/_app/immutable/chunks/DVNufAZd.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DTRg-O0o.js",
+            "local": "app/_app/immutable/chunks/DTRg-O0o.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DXS8V3dB.js",
+            "local": "app/_app/immutable/chunks/DXS8V3dB.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/CVUmpIQQ.js",
+            "local": "app/_app/immutable/chunks/CVUmpIQQ.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DDAZw85K.js",
+            "local": "app/_app/immutable/chunks/DDAZw85K.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BiQVkaaO.js",
+            "local": "app/_app/immutable/chunks/BiQVkaaO.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/ChOnYa6O.js",
+            "local": "app/_app/immutable/chunks/ChOnYa6O.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/2qrqj9oT.js",
+            "local": "app/_app/immutable/chunks/2qrqj9oT.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/EItvSysL.js",
+            "local": "app/_app/immutable/chunks/EItvSysL.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/nodes/6.4rDZFuEy.js",
+            "local": "app/_app/immutable/nodes/6.4rDZFuEy.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/DbEWz1-K.js",
+            "local": "app/_app/immutable/chunks/DbEWz1-K.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/COjBYiPT.js",
+            "local": "app/_app/immutable/chunks/COjBYiPT.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BpvpqV_q.js",
+            "local": "app/_app/immutable/chunks/BpvpqV_q.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BwU0bByR.js",
+            "local": "app/_app/immutable/chunks/BwU0bByR.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/BWtariHW.js",
+            "local": "app/_app/immutable/chunks/BWtariHW.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/nodes/1.DpZCJola.js",
+            "local": "app/_app/immutable/nodes/1.DpZCJola.js"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/chunks/nGpKVJ3P.js",
+            "local": "app/_app/immutable/chunks/nGpKVJ3P.js"
+          }
+        ],
+        "css": [
+          {
+            "original": "https://digitable.ink/app/_app/immutable/assets/0.DBnk8FxC.css",
+            "local": "app/_app/immutable/assets/0.DBnk8FxC.css"
+          },
+          {
+            "original": "https://digitable.ink/app/_app/immutable/assets/2.CV-KWLNP.css",
+            "local": "app/_app/immutable/assets/2.CV-KWLNP.css"
+          },
+          {
+            "original": "https://fonts.googleapis.com/css?family=Material+Icons",
+            "local": "_external/fonts.googleapis.com/css.css"
+          }
+        ],
+        "manifest": []
+      },
+      "assets": {
+        "images": [
+          {
+            "original": "https://digitable.ink/assets/components.svg",
+            "local": "assets/components.svg"
+          },
+          {
+            "original": "https://digitable.ink/assets/assets.svg",
+            "local": "assets/assets.svg"
+          },
+          {
+            "original": "https://digitable.ink/assets/system.svg",
+            "local": "assets/system.svg"
+          },
+          {
+            "original": "https://digitable.ink/assets/files.svg",
+            "local": "assets/files.svg"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/components.svg",
+            "local": "app/assets/components.svg"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/assets.svg",
+            "local": "app/assets/assets.svg"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/system.svg",
+            "local": "app/assets/system.svg"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/files.svg",
+            "local": "app/assets/files.svg"
+          },
+          {
+            "original": "https://digitable.ink/placeholder.svg",
+            "local": "placeholder.svg"
+          }
+        ],
+        "fonts": [],
+        "audio": [],
+        "other": [
+          {
+            "original": "https://digitable.ink/assets/components.csv",
+            "local": "assets/components.csv"
+          },
+          {
+            "original": "https://digitable.ink/assets/assets.csv",
+            "local": "assets/assets.csv"
+          },
+          {
+            "original": "https://digitable.ink/assets/system.csv",
+            "local": "assets/system.csv"
+          },
+          {
+            "original": "https://digitable.ink/assets/files.csv",
+            "local": "assets/files.csv"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/components.csv",
+            "local": "app/assets/components.csv"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/assets.csv",
+            "local": "app/assets/assets.csv"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/system.csv",
+            "local": "app/assets/system.csv"
+          },
+          {
+            "original": "https://digitable.ink/app/assets/files.csv",
+            "local": "app/assets/files.csv"
+          }
+        ]
+      }
+    }
+  }
+}

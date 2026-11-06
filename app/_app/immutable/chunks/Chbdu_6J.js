@@ -1,0 +1,2 @@
+import"./BX2GU7Uw.js";import{b6 as l,a3 as f,ap as g,a_ as C,Q as c,b1 as d}from"./CyagUWY4.js";import{s as O}from"./CwnzqZw-.js";import{p as a}from"./BCaXwhFt.js";import{a7 as i,i as b}from"./DDAZw85K.js";import{h as e}from"./tI7sOn3r.js";function R(m,o){l(o,!0);let n=a(o,"open",15,!1),r=a(o,"onOpenChange",3,i),s=a(o,"onOpenChangeComplete",3,i);b.create({variant:e(()=>"dialog"),open:e(()=>n(),t=>{n(t),r()(t)}),onOpenChangeComplete:e(()=>s())});var p=f(),h=g(p);O(h,()=>o.children??C),c(m,p),d()}export{R as D};
+//# sourceMappingURL=Chbdu_6J.js.map

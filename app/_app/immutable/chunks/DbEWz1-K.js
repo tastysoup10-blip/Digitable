@@ -1,0 +1,2 @@
+import{a4 as _,bL as d,bK as i,bH as g,bh as l,bf as m,au as p,aa as h,ae as v}from"./CyagUWY4.js";function x(n=!1){const s=_,e=s.l.u;if(!e)return;let o=()=>h(s.s);if(n){let a=0,t={};const b=v(()=>{let c=!1;const r=s.s;for(const f in r)r[f]!==t[f]&&(t[f]=r[f],c=!0);return c&&a++,a});o=()=>p(b)}e.b.length&&d(()=>{u(s,o),l(e.b)}),i(()=>{const a=g(()=>e.m.map(m));return()=>{for(const t of a)typeof t=="function"&&t()}}),e.a.length&&i(()=>{u(s,o),l(e.a)})}function u(n,s){if(n.l.s)for(const e of n.l.s)p(e);s()}export{x as i};
+//# sourceMappingURL=DbEWz1-K.js.map

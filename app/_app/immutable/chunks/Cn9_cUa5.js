@@ -1,0 +1,2 @@
+import{Z as b,aH as o,aF as c,n as l,b8 as p,bu as v,bo as g,bp as f,aG as m}from"./CyagUWY4.js";import{B as y}from"./Bydqxrjp.js";function T(u,_,d=!1){var n;o&&(n=m,c());var s=new y(u),h=d?l:0;function t(a,r){if(o){var e=p(n);if(a!==parseInt(e.substring(1))){var i=v();g(i),s.anchor=i,f(!1),s.ensure(a,r),f(!0);return}}s.ensure(a,r)}b(()=>{var a=!1;_((r,e=0)=>{a=!0,t(e,r)}),a||t(-1,null)},h)}export{T as i};
+//# sourceMappingURL=Cn9_cUa5.js.map

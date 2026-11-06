@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="../favicon.png" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<link href="../_app/immutable/assets/0.DBnk8FxC.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><!--[-1--><!--[--><main class="bg-background text-foreground grid min-h-screen place-items-center px-6"><section class="w-full max-w-md space-y-3"><p class="text-muted-foreground text-sm">404</p> <h1 class="text-2xl font-semibold">Not Found</h1> <a class="text-sm underline underline-offset-4" href="../">Return home</a></section></main><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_csyhpu = {
+						base: new URL("..", location).pathname.slice(0, -1),
+						assets: "/app",
+						env: {"PUBLIC_APP_VERSION":"0.0.1","PUBLIC_GAME_SERVER_URL":"https://digitable.ink:2567","PUBLIC_TRACEWAY_CONNECTION":"d42d96c40edb48faa6a156375f48cc05@https://traceway.digitable.ink/api/report"}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../_app/immutable/entry/start.tC41UdXd.js"),
+						import("../_app/immutable/entry/app.CPfx04Si.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 1],
+							data: [{type:"data",data:{user:null},uses:{}}],
+							form: null,
+							error: {message:"Not Found"},
+							status: 404
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

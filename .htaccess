@@ -1,0 +1,16 @@
+# Written by Website Copier Pro so this mirror runs on a normal
+# web server. Safe to delete if your host is configured already.
+
+DirectoryIndex index index.php index.html index.htm
+
+# Never expose the file tree.
+Options -Indexes
+
+<IfModule mod_mime.c>
+  AddType application/json .json
+</IfModule>
+
+# Serve the stored "index" files as JSON; they are API captures.
+<Files "index">
+  ForceType application/json
+</Files>

@@ -1,14 +1,110 @@
-<!doctype html><html lang="en"><head>
+<!DOCTYPE html><html lang="en"><head><script data-wcp-reload-guard="1">(function(){try{
+if(window.__wcp_rg)return; window.__wcp_rg=1;
+var now=+new Date(), last=0, consec=0, interacted=false;
+try{last=+(sessionStorage.getItem('__wcp_last')||0);}catch(e){}
+try{consec=+(sessionStorage.getItem('__wcp_consec')||0);}catch(e){}
+try{interacted=sessionStorage.getItem('__wcp_int')==='1';}catch(e){}
+try{sessionStorage.removeItem('__wcp_int');}catch(e){}
+// A rapid reload with NO preceding user interaction is loop-like; anything else resets the count.
+if(last && (now-last)<25000 && !interacted){ consec=consec+1; } else { consec=0; }
+try{sessionStorage.setItem('__wcp_last',String(now));}catch(e){}
+try{sessionStorage.setItem('__wcp_consec',String(consec));}catch(e){}
+// Remember once the user actually interacts, so a manual refresh afterwards is never mistaken for a loop.
+var mark=function(){try{sessionStorage.setItem('__wcp_int','1');}catch(e){}};
+['pointerdown','keydown','wheel','touchstart'].forEach(function(ev){try{addEventListener(ev,mark,{once:true,passive:true,capture:true});}catch(e){}});
+if(consec>=2){
+ try{console.warn('[wcp] reload loop detected — stopping the app from re-running so the mirror keeps its last render');}catch(e){}
+ // Drop dynamically-inserted <script> nodes: the reloading bundle is booted by an appended script,
+ // so with these blocked it never runs again. The static, already-rendered DOM remains.
+ try{var _ac=Node.prototype.appendChild;Node.prototype.appendChild=function(n){try{if(n&&n.nodeName==='SCRIPT')return n;}catch(e){}return _ac.call(this,n);};}catch(e){}
+ try{var _ib=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,r){try{if(n&&n.nodeName==='SCRIPT')return n;}catch(e){}return _ib.call(this,n,r);};}catch(e){}
+ try{var _ap=Element.prototype.append;if(_ap)Element.prototype.append=function(){var b=[];for(var i=0;i<arguments.length;i++){if(!(arguments[i]&&arguments[i].nodeName==='SCRIPT'))b.push(arguments[i]);}return _ap.apply(this,b);};}catch(e){}
+ // Belt-and-suspenders for the simpler variant where the reload is wired to a script's onerror.
+ try{var proto=HTMLScriptElement.prototype;var d=Object.getOwnPropertyDescriptor(proto,'onerror')||Object.getOwnPropertyDescriptor(HTMLElement.prototype,'onerror')||Object.getOwnPropertyDescriptor(Object.getPrototypeOf(HTMLElement.prototype||{}),'onerror');if(d&&d.set){Object.defineProperty(proto,'onerror',{configurable:true,enumerable:true,get:d.get,set:function(){}});}}catch(e){}
+}
+}catch(e){}})();</script><script data-wcp-dom-resilience="1">(function(){try{
+if(window.__wcp_domr)return; window.__wcp_domr=1;
+var P=Node.prototype;
+var _rc=P.replaceChild;
+P.replaceChild=function(nn,on){ try{ if(on&&on.parentNode===this) return _rc.call(this,nn,on); if(nn) this.appendChild(nn); return on; }catch(e){ try{ if(nn&&nn.parentNode!==this) this.appendChild(nn); }catch(_){} return on; } };
+var _ib=P.insertBefore;
+P.insertBefore=function(nn,ref){ try{ if(!ref||ref.parentNode===this) return _ib.call(this,nn,ref); return this.appendChild(nn); }catch(e){ try{ return this.appendChild(nn); }catch(_){ return nn; } } };
+var _rm=P.removeChild;
+P.removeChild=function(c){ try{ if(c&&c.parentNode===this) return _rm.call(this,c); if(c&&c.parentNode) return c.parentNode.removeChild(c); return c; }catch(e){ return c; } };
+}catch(e){}})();</script><script data-wcp-hydration-guard="1">(function(){try{
+if(window.__wcp_hg)return; window.__wcp_hg=1;
+var root=null, snap=null, marks=[], failed=false, restored=false;
+// Snapshot the framework's ROOT container (not the whole body) before deferred scripts hydrate, and
+// remember a spread of its real nodes as tripwires. Restoring only the root — never the whole body —
+// leaves independent, non-framework widgets that sit as body siblings (a OneTrust/cookie banner, an
+// anti-bot overlay) untouched, so their own click handlers keep working after we put the page back.
+function pickRoot(){
+ var kids=document.body?document.body.children:[], best=-1, r=null;
+ for(var i=0;i<kids.length;i++){ var k=kids[i], t=k.tagName; if(t==='SCRIPT'||t==='STYLE'||t==='LINK'||t==='NOSCRIPT')continue; var n=k.getElementsByTagName('*').length; if(n>best){best=n;r=k;} }
+ return r;
+}
+function capture(){
+ if(snap!=null||!document.body)return;
+ if((document.body.textContent||'').replace(/\s+/g,' ').trim().length<50)return;
+ root=pickRoot(); if(!root)return;
+ snap=root.innerHTML; marks=[];
+ var all=root.querySelectorAll('h1,h2,h3,h4,p,a,button,li,img,span');
+ var step=Math.max(1,Math.floor(all.length/50));
+ for(var i=0;i<all.length&&marks.length<50;i+=step) marks.push(all[i]);
+}
+document.addEventListener('readystatechange',function(){ if(document.readyState==='interactive') capture(); },true);
+document.addEventListener('DOMContentLoaded',capture,true);
+function restore(){
+ if(restored||snap==null||!failed||!marks.length||!root)return;
+ var gone=0; for(var i=0;i<marks.length;i++){ if(!document.contains(marks[i])) gone++; }
+ // Only when the framework has actually thrown the server markup away (most tripwire nodes detached)
+ // do we put the snapshot back. A hydration that recovered in place keeps its nodes, so this leaves
+ // it — and every cleanly-hydrating page — completely alone.
+ if(gone/marks.length>0.5){ restored=true; try{ if(document.contains(root)) root.innerHTML=snap; }catch(e){} }
+}
+function note(m){ if(failed||snap==null)return; m=String(m||''); if(/hydrat|did not match|Minified React error #(418|419|421|422|423|425)|invariant=(418|419|421|422|423|425)/i.test(m)){ failed=true; setTimeout(restore,800); setTimeout(restore,2400); } }
+var _ce=console.error; console.error=function(){ try{ for(var i=0;i<arguments.length;i++) note(arguments[i]); }catch(e){} return _ce.apply(this,arguments); };
+window.addEventListener('error',function(e){ note(e&&e.message); },true);
+window.addEventListener('unhandledrejection',function(e){ try{ note(e&&e.reason&&(e.reason.message||e.reason)); }catch(x){} },true);
+// No hydration error shortly after load -> drop the snapshot and stop watching. Healthy page, untouched.
+window.addEventListener('load',function(){ setTimeout(function(){ if(!failed){ snap=null; marks=[]; root=null; try{console.error=_ce;}catch(e){} } },4000); });
+}catch(e){}})();</script><script data-wcp-shim="1">(function(){try{
+var ORIG="digitable.ink".replace(/^www\./,'');
+function toLocal(u){try{
+ if(u==null)return u;
+ var s=(typeof u==='string')?u:(u&&u.url)||'';
+ if(!s||s.charAt(0)==='#'||/^(data|blob|javascript|mailto|tel):/i.test(s))return u;
+ var url=new URL(s,location.href);
+ if(url.protocol!=='http:'&&url.protocol!=='https:')return u;
+ if(url.host===location.host)return u;
+ var h=url.host.replace(/^www\./,'');
+ return (h===ORIG)?(url.pathname+url.search):('/_external/'+url.host+url.pathname+url.search);
+}catch(e){return u;}}
+var _f=window.fetch;
+if(_f){window.fetch=function(input,init){var self=this;try{
+ var orig=(typeof input==='string')?input:(input&&input.url);
+ if(orig){var n=toLocal(orig);
+  if(n!==orig){var li=(typeof input==='string')?n:new Request(n,input);
+   return _f.call(self,li,init).then(function(r){return (r&&r.status===404)?_f.call(self,input,init):r;},function(){return _f.call(self,input,init);});}}
+}catch(e){}return _f.call(self,input,init);};}
+var _o=XMLHttpRequest.prototype.open;
+// XHR has no live-fallback (unlike fetch), so only rewrite the site's OWN requests to local. A
+// cross-origin XHR (a consent SDK like OneTrust, an analytics beacon) must reach its real backend —
+// pointed at a local /_external/ path it 404s, the third-party script's init fails, and its buttons
+// (e.g. accept/reject cookies) never get wired, so clicks do nothing. Leaving those live keeps them
+// working; toLocal returns an /_external/ path only for other hosts, so that prefix is the signal.
+XMLHttpRequest.prototype.open=function(){try{if(typeof arguments[1]==='string'){var n=toLocal(arguments[1]);if(n.indexOf('/_external/')!==0)arguments[1]=n;}}catch(e){}return _o.apply(this,arguments);};
+}catch(e){}})();</script>
 		<meta charset="utf-8">
-		<link rel="icon" href="../favicon.png">
-		<link rel="stylesheet" href="../../_ext/fonts.googleapis.com/css/index_v03wwp.html">
+		<link rel="icon" href="/app/favicon.png">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<link href="../_app/immutable/assets/0.DBnk8FxC.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/2.CV-KWLNP.css" rel="stylesheet">
-	</head>
+	<link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/nodes/0.BD9g5W35.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BX2GU7Uw.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CyagUWY4.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CwnzqZw-.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/Bydqxrjp.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/yEqTJpWh.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/L6ca1ozp.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/B7uj9ok2.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CmZ9tv-Y.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/nodes/1.DpZCJola.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BEO92gGM.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BtzdVYvr.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DbEWz1-K.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CWbFBE18.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CwwnjdUC.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/QyqJA07V.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/itk-RkJJ.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/-UyI9lYi.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/nodes/2.DEL3qUj8.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/Cn9_cUa5.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/D4AYuhQA.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/By6pRzbt.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/B2pWqfIs.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DcEoRSaX.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/C8F4alPg.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BCaXwhFt.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DDAZw85K.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/tI7sOn3r.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/ciyfsgrx.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CjVParL-.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/D4gs151I.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/Chbdu_6J.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DPwF7NN3.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DjDK4Gcb.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BMCXoU05.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DN_tnip3.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/D3A7GI5r.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BfVGmfdE.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DHN6jCV6.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DVafIw4B.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/oKXMgCh-.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CqfRhK0F.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/D-Xf8mUC.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/nGpKVJ3P.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BjefmIgR.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DfbFO9s0.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DsqdWQfm.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/D2G1ucvE.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/F5uJFP5O.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/Rzw-TCWq.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/RvepaAyG.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DTRg-O0o.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DVNufAZd.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/DXS8V3dB.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/CVUmpIQQ.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BiQVkaaO.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/ChOnYa6O.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/2qrqj9oT.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/EItvSysL.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/nodes/6.4rDZFuEy.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/COjBYiPT.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BpvpqV_q.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BwU0bByR.js"><link rel="modulepreload" as="script" crossorigin="" href="/app/_app/immutable/chunks/BWtariHW.js"><style data-wcp-layout-clamp="1">html,body{max-width:100vw!important;overflow-x:clip!important}</style></head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[0--><!--[--><!--[0--><!--[--><!--[--><!--[--><!--[--><div data-slot="sidebar-wrapper" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem; " class="group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full"><!--[-1--><!--]--> <main class="relative min-w-0 flex-1"><!--[0--><div class="mt-12 flex w-full flex-col items-center justify-center gap-4 text-xl"><!--[--><!--[--><!--[--><!--[-1--><!--]--><!--]--><!--]--> <!--[-1--><!--]--><!----><!--]--><!----></div><!--]--></main><!----></div><!----><!--]--><!--]--><!--]--><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+		<div style="display: contents"><!--[--><!--[0--><!--[--><!--[0--><!--[--><!--[--><!--[--><!--[--><div data-slot="sidebar-wrapper" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem; " class="group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full"><!--[-1--><!--]--> <main class="relative min-w-0 flex-1"><!--[0--><div class="mt-12 flex w-full flex-col items-center justify-center gap-4 text-xl"><!--[--><!--[--><!--[--><!--[-1--><!--]--><!--]--><!--]--> <!--[-1--><div class="flex w-full flex-col items-center justify-center gap-4"><p>Get started by picking a folder to store your projects</p> <div class="flex flex-row gap-2"><!----><!----><button data-slot="alert-dialog-trigger" id="bits-c3" aria-haspopup="dialog" aria-expanded="false" data-alert-dialog-trigger="" data-state="closed"><!----></button><button data-slot="button" class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-lg border bg-clip-padding text-sm font-medium focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px aria-invalid:ring-3 [&amp;_svg:not([class*='size-'])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" type="button">Use Browser<!----></button><!----><!----> <!----><button data-slot="button" class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-lg border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px aria-invalid:ring-3 [&amp;_svg:not([class*='size-'])]:size-4 group/button inline-flex shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" type="button">Pick folder<!----></button><!----></div> <!----></div><!--]--><!----><!--]--><!----></div><!--]--></main><!----></div><!----><!--]--><!--]--><!--]--><!--]--><!--]--><!----><!--]--><!--]--> <!--[-1--><div id="svelte-announcer" aria-live="assertive" aria-atomic="true" style="position: absolute; left: 0; top: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; white-space: nowrap; width: 1px; height: 1px"><!----></div><!--]--><!--]-->
 			
 			<script>
 				{
@@ -36,4 +132,4 @@
 		</div>
 	
 
-</body></html>
+<!----><!----><!----><!----><!----><!----> <!----><!----></body></html>
